@@ -1,0 +1,108 @@
+{
+  "main": "index.html",
+  "logo": "logo.png",
+  "preload": "preload.js",
+  "pluginSetting": {
+    "single": true,
+    "height": 640
+  },
+  "features": [
+    {
+      "code": "qc-manager",
+      "description": "快命令管理 —— 新增、编辑、分类、执行你的快命令",
+      "cmds": [
+        "快命令管理",
+        "快命令"
+      ]
+    },
+    {
+      "code": "qc-launcher",
+      "description": "快命令启动器 —— 搜索并执行快命令",
+      "mainPush": true,
+      "cmds": [
+        "快命令搜索",
+        "命令面板"
+      ]
+    },
+    {
+      "code": "qc-text",
+      "description": "用快命令处理选中的文本",
+      "cmds": [
+        {
+          "type": "over",
+          "label": "快命令处理文本",
+          "exclude": "/\\n{3,}/",
+          "minLength": 1,
+          "maxLength": 100000
+        }
+      ]
+    },
+    {
+      "code": "qc-io",
+      "description": "导入 / 导出快命令配置",
+      "cmds": [
+        "导入快命令",
+        "导出快命令"
+      ]
+    }
+  ],
+  "tools": {
+    "list_quick_commands": {
+      "description": "列出用户已保存的全部快命令，可按分类或关键字过滤",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "只返回该分类下的快命令"
+          },
+          "keyword": {
+            "type": "string",
+            "description": "按名称、描述或标签过滤"
+          }
+        }
+      }
+    },
+    "run_quick_command": {
+      "description": "按名称执行一条快命令，可附带输入文本",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "快命令名称"
+          },
+          "text": {
+            "type": "string",
+            "description": "可选的输入文本，用于替换模板中的 {{text}}"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "是否执行成功"
+          },
+          "message": {
+            "type": "string",
+            "description": "执行结果描述"
+          }
+        },
+        "required": [
+          "ok",
+          "message"
+        ]
+      }
+    }
+  },
+  "development": {
+    "main": "http://127.0.0.1:5173"
+  }
+}

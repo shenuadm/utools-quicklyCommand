@@ -1,0 +1,23 @@
+{
+  "name": "quickly-command",
+  "version": "1.0.0",
+  "description": "快命令管理 —— 管理、分类并一键执行你的个人快命令",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node scripts/smoke.mjs",
+    "test:e2e": "node scripts/e2e-dblclick.mjs",
+    "shoot": "node scripts/shoot.mjs"
+  },
+  "dependencies": {
+    "vue": "^3.5.43"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.9",
+    "utools-api-types": "^8.0.0",
+    "vite": "^8.3.3"
+  }
+}
